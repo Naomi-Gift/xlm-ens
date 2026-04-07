@@ -1,0 +1,9 @@
+[package]
+name = "xlm-ns-resolver"
+edition.workspace = true
+license.workspace = true
+version.workspace = true
+
+[dependencies]
+serde.workspace = true
+xlm-ns-common = { path = "../../packages/xlm-ns-common" }

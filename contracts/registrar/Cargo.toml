@@ -1,0 +1,9 @@
+[package]
+name = "xlm-ns-registrar"
+edition.workspace = true
+license.workspace = true
+version.workspace = true
+
+[dependencies]
+thiserror.workspace = true
+xlm-ns-common = { path = "../../packages/xlm-ns-common" }
