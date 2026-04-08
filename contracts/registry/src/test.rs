@@ -15,16 +15,15 @@ mod tests {
         let name = String::from_str(&env, "timmy.xlm");
         let target = Some(String::from_str(&env, "GABC"));
 
-        client
-            .register(
-                &name,
-                &owner,
-                &target,
-                &None::<String>,
-                &100,
-                &1_000,
-                &2_000,
-            );
+        client.register(
+            &name,
+            &owner,
+            &target,
+            &None::<String>,
+            &100,
+            &1_000,
+            &2_000,
+        );
         client.transfer(&name, &owner, &next_owner, &101);
 
         let resolved = client.resolve(&name, &101);

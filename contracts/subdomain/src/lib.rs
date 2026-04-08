@@ -1,8 +1,6 @@
 mod test;
 
-use soroban_sdk::{
-    contract, contracterror, contractimpl, contracttype, Address, Env, String, Vec,
-};
+use soroban_sdk::{contract, contracterror, contractimpl, contracttype, Address, Env, String, Vec};
 use xlm_ns_common::soroban::{build_subdomain_name, validate_fqdn_soroban};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -49,7 +47,9 @@ impl SubdomainContract {
             owner,
             controllers: Vec::new(&env),
         };
-        env.storage().persistent().set(&DataKey::Parent(parent), &record);
+        env.storage()
+            .persistent()
+            .set(&DataKey::Parent(parent), &record);
         Ok(())
     }
 

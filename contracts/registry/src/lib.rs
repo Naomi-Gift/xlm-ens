@@ -1,8 +1,6 @@
 mod test;
 
-use soroban_sdk::{
-    contract, contracterror, contractimpl, contracttype, Address, Env, String, Vec,
-};
+use soroban_sdk::{contract, contracterror, contractimpl, contracttype, Address, Env, String, Vec};
 use xlm_ns_common::soroban::validate_fqdn_soroban;
 use xlm_ns_common::{DEFAULT_TTL_SECONDS, MAX_METADATA_URI_LENGTH};
 

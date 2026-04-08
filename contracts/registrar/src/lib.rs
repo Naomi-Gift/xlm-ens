@@ -2,9 +2,7 @@ pub mod expiry;
 pub mod pricing;
 mod test;
 
-use soroban_sdk::{
-    contract, contracterror, contractimpl, contracttype, Address, Env, String,
-};
+use soroban_sdk::{contract, contracterror, contractimpl, contracttype, Address, Env, String};
 use xlm_ns_common::soroban::{
     build_xlm_name, extract_label_soroban, validate_label_soroban,
     validate_registration_years_soroban,
@@ -62,7 +60,9 @@ pub struct RegistrarContract;
 impl RegistrarContract {
     pub fn reserve_label(env: Env, label: String) -> Result<(), RegistrarError> {
         validate_label_soroban(&label).map_err(|_| RegistrarError::Validation)?;
-        env.storage().persistent().set(&DataKey::Reserved(label), &true);
+        env.storage()
+            .persistent()
+            .set(&DataKey::Reserved(label), &true);
         Ok(())
     }
 
@@ -130,9 +130,10 @@ impl RegistrarContract {
             .persistent()
             .get::<_, u64>(&DataKey::Treasury)
             .unwrap_or(0);
-        env.storage()
-            .persistent()
-            .set(&DataKey::Treasury, &treasury.saturating_add(payment_stroops));
+        env.storage().persistent().set(
+            &DataKey::Treasury,
+            &treasury.saturating_add(payment_stroops),
+        );
         Ok(())
     }
 
@@ -183,16 +184,15 @@ impl RegistrarContract {
             .persistent()
             .get::<_, u64>(&DataKey::Treasury)
             .unwrap_or(0);
-        env.storage()
-            .persistent()
-            .set(&DataKey::Treasury, &treasury.saturating_add(payment_stroops));
+        env.storage().persistent().set(
+            &DataKey::Treasury,
+            &treasury.saturating_add(payment_stroops),
+        );
         Ok(())
     }
 
     pub fn registration(env: Env, name: String) -> Option<RegistrationRecord> {
-        env.storage()
-            .persistent()
-            .get(&DataKey::Registration(name))
+        env.storage().persistent().get(&DataKey::Registration(name))
     }
 
     pub fn is_available(env: Env, label: String, now_unix: u64) -> bool {

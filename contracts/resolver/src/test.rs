@@ -15,14 +15,13 @@ mod tests {
         let address = String::from_str(&env, "GABC");
 
         client.set_record(&name, &owner, &address, &100);
-        client
-            .set_text_record(
-                &name,
-                &owner,
-                &String::from_str(&env, "com.twitter"),
-                &String::from_str(&env, "@timmy"),
-                &101,
-            );
+        client.set_text_record(
+            &name,
+            &owner,
+            &String::from_str(&env, "com.twitter"),
+            &String::from_str(&env, "@timmy"),
+            &101,
+        );
         client.set_primary_name(&address, &owner, &name);
 
         let record = client.resolve(&name).unwrap();

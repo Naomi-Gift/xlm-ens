@@ -15,8 +15,11 @@ mod tests {
         let new_owner = Address::generate(&env);
         let token_id = String::from_str(&env, "timmy.xlm");
 
-        client
-            .mint(&token_id, &owner, &Some(String::from_str(&env, "ipfs://timmy")));
+        client.mint(
+            &token_id,
+            &owner,
+            &Some(String::from_str(&env, "ipfs://timmy")),
+        );
         client.approve(&token_id, &owner, &approved);
         client.transfer(&token_id, &approved, &new_owner);
 

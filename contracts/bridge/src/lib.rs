@@ -33,7 +33,9 @@ impl BridgeContract {
     pub fn register_chain(env: Env, chain: String) -> Result<(), BridgeError> {
         validate_chain_name_soroban(&chain).map_err(|_| BridgeError::Validation)?;
         let route = target_for_chain(&env, &chain).ok_or(BridgeError::UnsupportedChain)?;
-        env.storage().persistent().set(&DataKey::Route(chain), &route);
+        env.storage()
+            .persistent()
+            .set(&DataKey::Route(chain), &route);
         Ok(())
     }
 
@@ -46,7 +48,12 @@ impl BridgeContract {
             .get(&DataKey::Route(chain.clone()))
             .ok_or(BridgeError::UnsupportedChain)?;
 
-        Ok(build_gmp_message(&env, &name, &route.destination_chain, &route.destination_resolver))
+        Ok(build_gmp_message(
+            &env,
+            &name,
+            &route.destination_chain,
+            &route.destination_resolver,
+        ))
     }
 
     pub fn route(env: Env, chain: String) -> Option<BridgeRoute> {
@@ -82,7 +89,12 @@ fn target_for_chain(env: &Env, chain: &String) -> Option<BridgeRoute> {
     }
 }
 
-fn build_gmp_message(env: &Env, name: &String, destination_chain: &String, resolver: &String) -> String {
+fn build_gmp_message(
+    env: &Env,
+    name: &String,
+    destination_chain: &String,
+    resolver: &String,
+) -> String {
     let message = format!(
         "{{\"type\":\"xlm-ns-resolution\",\"name\":\"{}\",\"destination_chain\":\"{}\",\"resolver\":\"{}\"}}",
         name, destination_chain, resolver

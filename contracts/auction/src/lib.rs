@@ -1,8 +1,6 @@
 mod test;
 
-use soroban_sdk::{
-    contract, contracterror, contractimpl, contracttype, Address, Env, String, Vec,
-};
+use soroban_sdk::{contract, contracterror, contractimpl, contracttype, Address, Env, String, Vec};
 use xlm_ns_common::soroban::validate_fqdn_soroban;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -117,7 +115,11 @@ impl AuctionContract {
         Ok(())
     }
 
-    pub fn settle(env: Env, name: String, now_unix: u64) -> Result<Option<Settlement>, AuctionError> {
+    pub fn settle(
+        env: Env,
+        name: String,
+        now_unix: u64,
+    ) -> Result<Option<Settlement>, AuctionError> {
         let auction = get_auction(&env, &name)?;
         if env
             .storage()

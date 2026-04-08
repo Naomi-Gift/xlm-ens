@@ -18,14 +18,13 @@ mod tests {
         client.register_parent(&parent, &owner);
         client.add_controller(&parent, &owner, &controller);
 
-        let fqdn = client
-            .create(
-                &String::from_str(&env, "pay"),
-                &parent,
-                &controller,
-                &sub_owner,
-                &100,
-            );
+        let fqdn = client.create(
+            &String::from_str(&env, "pay"),
+            &parent,
+            &controller,
+            &sub_owner,
+            &100,
+        );
 
         assert_eq!(fqdn, String::from_str(&env, "pay.timmy.xlm"));
         assert!(client.exists(&fqdn));

@@ -1,8 +1,6 @@
 mod test;
 
-use soroban_sdk::{
-    contract, contracterror, contractimpl, contracttype, Address, Env, Map, String,
-};
+use soroban_sdk::{contract, contracterror, contractimpl, contracttype, Address, Env, Map, String};
 use xlm_ns_common::soroban::validate_fqdn_soroban;
 use xlm_ns_common::MAX_TEXT_RECORDS;
 
@@ -105,7 +103,9 @@ impl ResolverContract {
         if record.owner != caller {
             return Err(ResolverError::Unauthorized);
         }
-        env.storage().persistent().remove(&DataKey::Forward(name.clone()));
+        env.storage()
+            .persistent()
+            .remove(&DataKey::Forward(name.clone()));
         env.storage()
             .persistent()
             .remove(&DataKey::Reverse(record.address.clone()));

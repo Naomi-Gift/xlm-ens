@@ -60,7 +60,9 @@ impl NftContract {
             return Err(NftError::Unauthorized);
         }
         record.approved = Some(approved);
-        env.storage().persistent().set(&DataKey::Token(token_id), &record);
+        env.storage()
+            .persistent()
+            .set(&DataKey::Token(token_id), &record);
         Ok(())
     }
 
@@ -76,7 +78,9 @@ impl NftContract {
         }
         record.owner = new_owner;
         record.approved = None;
-        env.storage().persistent().set(&DataKey::Token(token_id), &record);
+        env.storage()
+            .persistent()
+            .set(&DataKey::Token(token_id), &record);
         Ok(())
     }
 
