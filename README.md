@@ -1,5 +1,7 @@
 # xlm-ns
 
+![CI Status](https://github.com/0xVida/xlm-ens/actions/workflows/ci.yml/badge.svg)
+
 `xlm-ns` is a Rust workspace for a Stellar name service where names like
 `timmy.xlm` behave as user-owned identifiers for accounts, apps, subdomains, and
 cross-chain resolution targets.
@@ -174,3 +176,33 @@ TMPDIR=/tmp cargo test --workspace
 
 `TMPDIR=/tmp` is used here because the current sandbox environment does not allow
 Rust to create temporary build directories in the default macOS temp location.
+
+## Roadmap
+
+The project is currently in active development. The following milestones outline the path to production:
+
+### Phase 1: Foundation (MVP) - **CURRENT**
+- [x] Core contract logic (Registry, Registrar, Resolver)
+- [x] Auction settlement (Vickrey style)
+- [x] Basic SDK stubs and CLI entry points
+- [x] Shared validation rules
+
+### Phase 2: Testnet Beta
+- [ ] **Integration**: Wire CLI through full quote/submit flows (#9)
+- [ ] **Testing**: Expand auction and edge-case unit tests (#95)
+- [ ] **Automation**: CI/CD for formatting and workspace tests (#99)
+- [ ] **SDK**: Full client implementation with Soroban RPC integration
+
+### Phase 3: Mainnet Readiness
+- [ ] **Security**: External audits of contract storage and auth patterns
+- [ ] **Governance**: Implement treasury controls and fee management
+- [ ] **Ecosystem**: Axelar-style bridging and NFT representation (X-NFT)
+- [ ] **Docs**: Developer portal and integration cookbook
+
+## Backlog Execution
+
+We use a standardized label taxonomy to manage the 100-issue backlog:
+- `area/*`: contracts, sdk, cli, docs, ops
+- `type/*`: bug, feature, improvement, security
+- `priority/*`: high, medium, low
+- `milestone/*`: mvp, testnet-beta, mainnet
